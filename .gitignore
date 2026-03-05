@@ -39,3 +39,6 @@ log*
 *.patch
 *.log
 *.err
+
+# nix
+.direnv/

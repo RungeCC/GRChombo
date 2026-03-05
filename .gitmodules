@@ -1,0 +1,3 @@
+[submodule "chombo"]
+	path = chombo
+	url = git@github.com:RungeCC/Chombo.git
