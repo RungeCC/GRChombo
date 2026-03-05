@@ -12,6 +12,10 @@
     pkgs = import nixpkgs {
       inherit system;
     };
+    csh = pkgs.runCommand "csh" {} ''
+      mkdir -p $out/bin
+      ln -s ${pkgs.tcsh}/bin/tcsh $out/bin/csh
+    '';
   in {
     devShells.default = pkgs.mkShell.override {
       # stdenv = pkgs.llvmPackages_20.stdenv;
@@ -19,13 +23,12 @@
     } rec {
       name = "gr-chombo";
 
-      packages = with pkgs; [
+      packages = (with pkgs; [
         perl
         unzip          # for xmake repo
         llvmPackages_20.clang-tools # for clang-format and clangd
         nodejs
-        tcsh
-      ];
+      ]) ++ [csh];
 
       buildInputs = with pkgs; [
         xmake
@@ -39,10 +42,11 @@
         perl
         gcc15
         gfortran15
-	    ];
-      # see https://github.com/xmake-io/xmake/issues/5138 and https://github.com/NixOS/nixpkgs/issues/314313
+      ];
       shellHook = ''
-        export LD=$CXX
+        # Fortran runtime + LAPACK/BLAS libraries
+        export NIX_LDFLAGS="$NIX_LDFLAGS -L${pkgs.gfortran15.cc.lib}/lib -L${pkgs.lapack}/lib -L${pkgs.blas}/lib"
+        export XTRALDFLAGS="$XTRALDFLAGS -llapack -lblas"
       '';
     };
   });
