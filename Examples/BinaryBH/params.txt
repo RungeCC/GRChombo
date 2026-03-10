@@ -9,7 +9,7 @@
 verbosity = 0
 
 # location / naming of output files
-# output_path = "" # Main path for all files. Must exist!
+output_path = "/home/runge/repos/cxx/GRChombo/tmp/" # Main path for all files. Must exist!
 chk_prefix = BinaryBHChk_
 plot_prefix = BinaryBHPlot_
 # restart_file = BinaryBHChk_000000.3d.hdf5

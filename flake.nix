@@ -44,7 +44,7 @@
         gfortran15
       ];
       shellHook = ''
-        # Fortran runtime + LAPACK/BLAS libraries
+        export CHOMBO_HOME="$(pwd)/chombo/lib"
         export NIX_LDFLAGS="$NIX_LDFLAGS -L${pkgs.gfortran15.cc.lib}/lib -L${pkgs.lapack}/lib -L${pkgs.blas}/lib"
         export XTRALDFLAGS="$XTRALDFLAGS -llapack -lblas"
       '';
