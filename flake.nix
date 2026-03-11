@@ -48,6 +48,7 @@
 
       devshell.startup.locale.text = ''
         export LOCALE_ARCHIVE=${pkgs.glibcLocales}/lib/locale/locale-archive
+        export LC_ALL=C.UTF-8
       '';
 
       devshell.startup.ldflags.text = ''
