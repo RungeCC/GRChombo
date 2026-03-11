@@ -35,6 +35,7 @@
         lapack
         blas
         openmpi
+        openmpi.dev
         hdf5
         zlib
         gfortran15
