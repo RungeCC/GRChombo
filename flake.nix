@@ -36,6 +36,7 @@
         blas
         mpi
         hdf5
+        zlib
         gfortran15
       ]) ++ [csh];
 
@@ -52,10 +53,10 @@
       '';
 
       devshell.startup.ldflags.text = ''
-        export NIX_LDFLAGS="$NIX_LDFLAGS -L${pkgs.gfortran15.cc.lib}/lib -L${pkgs.lapack}/lib -L${pkgs.blas}/lib -L${pkgs.hdf5}/lib"
+        export NIX_LDFLAGS="$NIX_LDFLAGS -L${pkgs.gfortran15.cc.lib}/lib -L${pkgs.lapack}/lib -L${pkgs.blas}/lib -L${pkgs.hdf5}/lib -L${pkgs.zlib}/lib"
         export XTRALDFLAGS="$XTRALDFLAGS -llapack -lblas"
         export HDFINCFLAGS="-I${pkgs.hdf5.dev}/include"
-        export HDFLIBFLAGS="-L${pkgs.hdf5}/lib -lhdf5 -lz"
+        export HDFLIBFLAGS="-L${pkgs.hdf5}/lib -L${pkgs.zlib}/lib -lhdf5 -lz"
       '';
 
       devshell.startup.gcc_stdenv.text = ''
