@@ -62,6 +62,8 @@
       devshell.startup.gcc_stdenv.text = ''
         export CC=${pkgs.gcc15}/bin/gcc
         export CXX=${pkgs.gcc15}/bin/g++
+        export MPICC=${pkgs.mpi}/bin/mpicc
+        export MPICXX=${pkgs.mpi}/bin/mpicxx
       '';
     };
   });
