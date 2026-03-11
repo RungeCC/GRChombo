@@ -46,6 +46,10 @@
         }
       ];
 
+      devshell.startup.locale.text = ''
+        export LOCALE_ARCHIVE=${pkgs.glibcLocales}/lib/locale/locale-archive
+      '';
+
       devshell.startup.ldflags.text = ''
         export NIX_LDFLAGS="$NIX_LDFLAGS -L${pkgs.gfortran15.cc.lib}/lib -L${pkgs.lapack}/lib -L${pkgs.blas}/lib"
         export XTRALDFLAGS="$XTRALDFLAGS -llapack -lblas"
