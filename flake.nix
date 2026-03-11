@@ -65,6 +65,8 @@
       devshell.startup.gcc_stdenv.text = ''
         export CC=${pkgs.gcc15}/bin/gcc
         export CXX=${pkgs.gcc15}/bin/g++
+        export CXXFLAGS="$CXXFLAGS -fpermissive"
+        export CFLAGS="$CFLAGS -fpermissive"
       '';
     };
   });
