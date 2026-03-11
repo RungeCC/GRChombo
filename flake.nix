@@ -63,11 +63,8 @@
       '';
 
       devshell.startup.gcc_stdenv.text = ''
-        export PATH="${pkgs.openmpi}/bin:$PATH"
         export CC=${pkgs.gcc15}/bin/gcc
         export CXX=${pkgs.gcc15}/bin/g++
-        export MPICC=${pkgs.openmpi}/bin/mpicc
-        export MPICXX=${pkgs.openmpi}/bin/mpicxx
       '';
     };
   });
