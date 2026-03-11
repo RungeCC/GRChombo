@@ -34,9 +34,9 @@
         ninja
         lapack
         blas
-        openmpi
-        openmpi.dev
-        hdf5
+        mpi
+        mpi.dev
+        hdf5-mpi
         zlib
         gfortran15
       ]) ++ [csh];
@@ -54,12 +54,12 @@
       '';
 
       devshell.startup.ldflags.text = ''
-        export NIX_LDFLAGS="$NIX_LDFLAGS -L${pkgs.gfortran15.cc.lib}/lib -L${pkgs.lapack}/lib -L${pkgs.blas}/lib -L${pkgs.hdf5}/lib -L${pkgs.zlib}/lib"
+        export NIX_LDFLAGS="$NIX_LDFLAGS -L${pkgs.gfortran15.cc.lib}/lib -L${pkgs.lapack}/lib -L${pkgs.blas}/lib -L${pkgs.hdf5-mpi}/lib -L${pkgs.zlib}/lib"
         export XTRALDFLAGS="$XTRALDFLAGS -L${pkgs.lapack}/lib -L${pkgs.blas}/lib -llapack -lblas"
-        export HDFINCFLAGS="-I${pkgs.hdf5.dev}/include"
-        export HDFLIBFLAGS="-L${pkgs.hdf5}/lib -L${pkgs.zlib}/lib -lhdf5 -lz"
-        export HDFMPIINCFLAGS="-I${pkgs.hdf5.dev}/include"
-        export HDFMPILIBFLAGS="-L${pkgs.hdf5}/lib -L${pkgs.zlib}/lib -lhdf5 -lz"
+        export HDFINCFLAGS="-I${pkgs.hdf5-mpi.dev}/include"
+        export HDFLIBFLAGS="-L${pkgs.hdf5-mpi}/lib -L${pkgs.zlib}/lib -lhdf5 -lz"
+        export HDFMPIINCFLAGS="-I${pkgs.hdf5-mpi.dev}/include"
+        export HDFMPILIBFLAGS="-L${pkgs.hdf5-mpi}/lib -L${pkgs.zlib}/lib -lhdf5 -lz"
       '';
 
       devshell.startup.gcc_stdenv.text = ''
