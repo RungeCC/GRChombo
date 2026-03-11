@@ -62,6 +62,7 @@
       '';
 
       devshell.startup.gcc_stdenv.text = ''
+        export PATH="${pkgs.mpi}/bin:$PATH"
         export CC=${pkgs.gcc15}/bin/gcc
         export CXX=${pkgs.gcc15}/bin/g++
         export MPICC=${pkgs.mpi}/bin/mpicc
