@@ -57,6 +57,8 @@
         export XTRALDFLAGS="$XTRALDFLAGS -L${pkgs.lapack}/lib -L${pkgs.blas}/lib -llapack -lblas"
         export HDFINCFLAGS="-I${pkgs.hdf5.dev}/include"
         export HDFLIBFLAGS="-L${pkgs.hdf5}/lib -L${pkgs.zlib}/lib -lhdf5 -lz"
+        export HDFMPIINCFLAGS="-I${pkgs.hdf5.dev}/include"
+        export HDFMPILIBFLAGS="-L${pkgs.hdf5}/lib -L${pkgs.zlib}/lib -lhdf5 -lz"
       '';
 
       devshell.startup.gcc_stdenv.text = ''
