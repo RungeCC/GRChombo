@@ -52,8 +52,10 @@
       '';
 
       devshell.startup.ldflags.text = ''
-        export NIX_LDFLAGS="$NIX_LDFLAGS -L${pkgs.gfortran15.cc.lib}/lib -L${pkgs.lapack}/lib -L${pkgs.blas}/lib"
+        export NIX_LDFLAGS="$NIX_LDFLAGS -L${pkgs.gfortran15.cc.lib}/lib -L${pkgs.lapack}/lib -L${pkgs.blas}/lib -L${pkgs.hdf5}/lib"
         export XTRALDFLAGS="$XTRALDFLAGS -llapack -lblas"
+        export HDFINCFLAGS="-I${pkgs.hdf5}/include"
+        export HDFLIBFLAGS="-L${pkgs.hdf5}/lib -lhdf5 -lz"
       '';
 
       devshell.startup.gcc_stdenv.text = ''
