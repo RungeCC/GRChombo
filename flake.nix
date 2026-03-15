@@ -39,6 +39,7 @@
         hdf5-mpi
         zlib
         gfortran15
+        poetry
       ]) ++ [csh];
 
       env = [
@@ -60,6 +61,7 @@
         export HDFLIBFLAGS="-L${pkgs.hdf5-mpi}/lib -L${pkgs.zlib}/lib -lhdf5 -lz"
         export HDFMPIINCFLAGS="-I${pkgs.hdf5-mpi.dev}/include"
         export HDFMPILIBFLAGS="-L${pkgs.hdf5-mpi}/lib -L${pkgs.zlib}/lib -lhdf5 -lz"
+        export LD_LIBRARY_PATH="${pkgs.gcc15.cc.lib}/lib:${pkgs.gfortran15.cc.lib}/lib:$LD_LIBRARY_PATH"
       '';
 
       devshell.startup.gcc_stdenv.text = ''
@@ -67,6 +69,13 @@
         export CXX=${pkgs.gcc15}/bin/g++
         export CXXFLAGS="$CXXFLAGS -fpermissive"
         export CFLAGS="$CFLAGS -fpermissive"
+      '';
+
+      devshell.startup.poetry.text = ''
+        if [ -f pyproject.toml ]; then
+          poetry install --no-interaction
+          source $(poetry env info --path)/bin/activate
+        fi
       '';
     };
   });
